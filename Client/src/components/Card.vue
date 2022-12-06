@@ -1,10 +1,13 @@
 <script>
+import { mapActions } from "pinia";
+import { useCounterStore } from "../stores/counter";
 export default {
   name: "Card",
   props: ["movie"],
   methods: {
+    ...mapActions(useCounterStore, ["getDetail"]),
     checkID(id) {
-      console.log(id);
+      this.getDetail(id);
     },
   },
 };
