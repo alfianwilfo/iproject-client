@@ -7,6 +7,7 @@ export const useCounterStore = defineStore("counter", {
     url: "https://pilm-zzz.up.railway.app",
     // url: "http://localhost:3000",
     movies: [],
+    random: {},
   }),
   actions: {
     getMovie() {
@@ -16,12 +17,18 @@ export const useCounterStore = defineStore("counter", {
       })
         .then((msg) => {
           let { data } = msg;
+          let random = "top" + Math.floor(Math.random() * 10) + 1;
+          data.forEach((el) => {
+            if (el.id === random) {
+              this.random = el;
+            }
+          });
           this.movies = data;
-          console.log(data);
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally();
     },
   },
 });

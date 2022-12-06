@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import LandingPage from "../views/LandingPage.vue";
 import TopHundred from "../views/Top100.vue";
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -8,7 +9,7 @@ const router = createRouter({
       name: "TopHundred",
       component: TopHundred,
     },
-    { path: "/", redirect: { name: "" } },
+    { path: "/", name: "LandingPage", component: LandingPage },
   ],
 });
 
