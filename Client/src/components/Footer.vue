@@ -6,7 +6,7 @@ export default {
 
 <template>
   <div
-    class="container mx-auto text-center bg-[#D6E4E5] h-[4rem] flex items-center justify-center"
+    class="container mx-auto text-center bg-[#006E7F] h-[4rem] flex items-center justify-center"
   >
     <div>
       <p>© 2022 Alfian Wilfo</p>

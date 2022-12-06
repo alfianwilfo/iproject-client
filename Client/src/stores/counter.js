@@ -4,10 +4,11 @@ import axios from "axios";
 
 export const useCounterStore = defineStore("counter", {
   state: () => ({
-    url: "https://pilm-zzz.up.railway.app",
-    // url: "http://localhost:3000",
+    // url: "https://pilm-zzz.up.railway.app",
+    url: "http://localhost:3000",
     movies: [],
     random: {},
+    selected: {},
   }),
   actions: {
     getMovie() {
@@ -29,6 +30,18 @@ export const useCounterStore = defineStore("counter", {
           console.log(err);
         })
         .finally();
+    },
+    getDetail(id) {
+      axios({
+        url: this.url + "/movies/" + id,
+        method: "GET",
+      })
+        .then((msg) => {
+          console.log(msg);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     },
   },
 });

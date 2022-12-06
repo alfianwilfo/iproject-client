@@ -31,21 +31,25 @@ export default {
         <div class="text-center w-[43rem]">
           <div>
             <p class="text-[42px] font-bold">
-              100 Best Movies of All Time That You Should Watch Immediately
+              Update Your Information About Covid-19 Today
             </p>
           </div>
           <div>
             <router-link to="/top100">
               <button
-                class="text-[29px] bg-[#497174] rounded-lg text-white w-[400px] h-[46px] hover:brightness-150"
+                class="text-[29px] bg-[#006E7F] rounded-lg text-white w-[300px] h-[46px] hover:brightness-150"
               >
-                Check them now
+                Check now
               </button>
             </router-link>
           </div>
         </div>
-        <div class="w-[230px]">
-          <img :src="random.image" alt="" />
+        <div class="">
+          <img
+            class="w-[15rem]"
+            src="../assets/—Pngtree—red covid-19 bacteria isolated on_5340587.png"
+            alt=""
+          />
         </div>
       </div>
     </div>
