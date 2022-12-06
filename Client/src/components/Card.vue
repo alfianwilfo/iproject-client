@@ -1,6 +1,7 @@
 <script>
 export default {
   name: "Card",
+  // props: ["movie"],
 };
 </script>
 
@@ -29,9 +30,7 @@ export default {
           </svg>
           Members only
         </p>
-        <div class="text-gray-900 font-bold text-xl mb-2">
-          Can coffee make you a better developer?
-        </div>
+        <div class="text-gray-900 font-bold text-xl mb-2">asa</div>
         <p class="text-gray-700 text-base">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
           quia, nulla! Maiores et perferendis eaque, exercitationem praesentium

@@ -1,7 +1,7 @@
 <script>
 import NavBar from "../components/NavBar.vue";
 import Card from "../components/Card.vue";
-import { mapState, mapActions } from "pinia";
+import { mapStores, mapActions, mapState } from "pinia";
 import { useCounterStore } from "../stores/counter";
 
 export default {
@@ -16,10 +16,13 @@ export default {
   created() {
     this.getMovie();
   },
+  computed: {
+    ...mapState(useCounterStore, ["movies"]),
+  },
 };
 </script>
 
 <template>
   <NavBar />
-  <Card />
+  <Card v-for="item in movies" />
 </template>

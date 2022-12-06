@@ -19,7 +19,7 @@ export const useCounterStore = defineStore("counter", {
       })
         .then((obj) => {
           let { data } = obj;
-          console.log(data);
+          this.movies = data;
         })
         .catch((err) => {
           console.log(err);
