@@ -4,8 +4,8 @@ import axios from "axios";
 
 export const useCounterStore = defineStore("counter", {
   state: () => ({
-    // url: "https://pilm-zzz.up.railway.app";
-    url: "http://localhost:3000",
+    url: "https://pilm-zzz.up.railway.app",
+    // url: "http://localhost:3000",
     movies: [],
   }),
   actions: {
