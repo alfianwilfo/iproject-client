@@ -1,7 +1,7 @@
 <script>
 import NavBar from "../components/NavBar.vue";
 import Card from "../components/Card.vue";
-import { mapStores, mapActions, mapState } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useCounterStore } from "../stores/counter";
 import Footer from "../components/Footer.vue";
 
