@@ -3,29 +3,24 @@ import { defineStore } from "pinia";
 import axios from "axios";
 
 export const useCounterStore = defineStore("counter", {
-  state: () => {
-    movies: [];
-  },
+  state: () => ({
+    // url: "https://pilm-zzz.up.railway.app";
+    url: "http://localhost:3000",
+    movies: [],
+  }),
   actions: {
     getMovie() {
       axios({
-        url: "https://imdb-top-100-movies.p.rapidapi.com/premiummovies",
-        headers: {
-          "X-RapidAPI-Key":
-            "206048b294msh3f43529c347895ep13c30ajsn0d9f344e0ca0",
-          "X-RapidAPI-Host": "imdb-top-100-movies.p.rapidapi.com",
-        },
+        url: this.url + "/movies",
         method: "GET",
       })
-        .then((obj) => {
-          let { data } = obj;
+        .then((msg) => {
+          let { data } = msg;
           this.movies = data;
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);
-        })
-        .finally((ee) => {
-          console.log(ee, "????");
         });
     },
   },

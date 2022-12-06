@@ -24,5 +24,5 @@ export default {
 
 <template>
   <NavBar />
-  <Card v-for="item in movies" />
+  <!-- <Card v-for="item in movies" /> -->
 </template>
