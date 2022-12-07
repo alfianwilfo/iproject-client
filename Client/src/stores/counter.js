@@ -92,5 +92,34 @@ export const useCounterStore = defineStore("counter", {
       localStorage.clear();
       this.isLogin = false;
     },
+    paymentHandler() {
+      axios({ url: this.url + "/payments", method: "GET" })
+        .then((msg) => {
+          let { data } = msg;
+          console.log(data.data.token);
+          snap.pay(data.data.token, {
+            onSuccess: function (result) {
+              console.log("success");
+              console.log(result);
+            },
+            onPending: function (result) {
+              console.log("pending");
+              console.log(result);
+            },
+            onError: function (result) {
+              console.log("error");
+              console.log(result);
+            },
+            onClose: function () {
+              console.log(
+                "customer closed the popup without finishing the payment"
+              );
+            },
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 });

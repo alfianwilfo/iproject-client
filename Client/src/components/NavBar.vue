@@ -1,13 +1,17 @@
-<script>
+<script type="text/javascript">
+import axios from "axios";
 import { mapActions, mapState } from "pinia";
 import { useCounterStore } from "../stores/counter";
 
 export default {
   name: "Navbar",
   methods: {
-    ...mapActions(useCounterStore, ["logoutHandler"]),
+    ...mapActions(useCounterStore, ["logoutHandler", "paymentHandler"]),
     forLogout() {
       this.logoutHandler();
+    },
+    payPremium() {
+      this.paymentHandler();
     },
   },
   computed: {
@@ -23,6 +27,7 @@ export default {
     </div>
 
     <div class="flex items-center justify-center w-[10rem]">
+      <button @click.prevent="payPremium">Pay!</button>
       <button
         v-if="isLogin"
         @click="forLogout"
