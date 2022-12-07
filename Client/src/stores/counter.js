@@ -77,6 +77,8 @@ export const useCounterStore = defineStore("counter", {
           localStorage.status = data.status;
           if (data.status === "Basic") {
             this.isVip = false;
+          } else {
+            this.isVip = true;
           }
           this.router.push({ name: "landing-page" });
         })
@@ -99,6 +101,7 @@ export const useCounterStore = defineStore("counter", {
             let { data } = msg;
             Swal.fire("Congrats", data.message, "success");
             this.isVip = true;
+            localStorage.status = "Premium";
           })
           .catch((err) => {
             console.log(err);
