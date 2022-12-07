@@ -18,7 +18,7 @@ export const useCounterStore = defineStore("counter", {
           this.countries = data.response;
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire("Error", err.response.data.message, "error");
         });
     },
     getStatisticCountry(name) {
@@ -36,7 +36,7 @@ export const useCounterStore = defineStore("counter", {
           });
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire("Error", err.response.data.message, "error");
         });
     },
     getHospital() {
@@ -49,7 +49,7 @@ export const useCounterStore = defineStore("counter", {
           console.log(msg);
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire("Error", err.response.data.message, "error");
         });
     },
     registerHandler(obj) {
@@ -65,7 +65,7 @@ export const useCounterStore = defineStore("counter", {
           this.router.push({ name: "login" });
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire("Error", err.response.data.message, "error");
         });
     },
     loginHandler(obj) {
@@ -85,7 +85,7 @@ export const useCounterStore = defineStore("counter", {
           this.router.push({ name: "landing-page" });
         })
         .catch((err) => {
-          console.log(err);
+          Swal.fire("Error", err.response.data.message, "error");
         });
     },
     logoutHandler() {
