@@ -3,20 +3,19 @@ import { mapActions } from "pinia";
 import { useCounterStore } from "../stores/counter";
 
 export default {
-  name: "Register",
+  name: "login",
   data() {
     return {
       data: {
-        username: "",
         email: "",
         password: "",
       },
     };
   },
   methods: {
-    ...mapActions(useCounterStore, ["registerHandler"]),
+    ...mapActions(useCounterStore, ["loginHandler"]),
     getData() {
-      this.registerHandler(this.data);
+      this.loginHandler(this.data);
     },
   },
 };
@@ -34,27 +33,13 @@ export default {
       </div>
       <div class="">
         <div>
-          <p class="text-2xl text-center font-bold">Register</p>
+          <p class="text-2xl text-center font-bold">Login</p>
           <p class="text-center font-bold">
             Untuk dapat melihat data covid diseluruh dunia
           </p>
         </div>
         <div class="w-[400px] h-[360px]">
           <form @submit.prevent="getData">
-            <div class="mb-2">
-              <label
-                class="block text-gray-700 text-sm font-bold mb-2"
-                for="username"
-              >
-                Username
-              </label>
-              <input
-                v-model="data.username"
-                class="w-[280px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="text"
-                placeholder="Username"
-              />
-            </div>
             <div class="mb-2">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -65,8 +50,8 @@ export default {
               <input
                 v-model="data.email"
                 class="w-[280px] shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                type="email"
-                placeholder="Username"
+                type="text"
+                placeholder="Email "
               />
             </div>
             <div class="mb-2">
@@ -87,14 +72,14 @@ export default {
               <button
                 class="bg-[#006E7F] w-[79px] h-[30px] rounded mt-2 text-[15px] text-white"
               >
-                Register
+                Login
               </button>
             </div>
             <div>
               <p>
                 Sudah punya akun?
-                <router-link to="/login">
-                  <button>Login</button>
+                <router-link to="/register">
+                  <button>Register</button>
                 </router-link>
               </p>
             </div>
