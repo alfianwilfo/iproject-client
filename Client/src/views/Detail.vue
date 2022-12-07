@@ -12,14 +12,8 @@ export default {
         ? 0
         : "+" + Number(this.statistic.deaths.new).toLocaleString();
     },
-    // formattedAmount() {
-    //   return this.statistic.tests.total.toLocaleString();
-    // },
   },
   methods: {},
-  created() {
-    // console.log(this.route.params.name);
-  },
 };
 </script>
 
