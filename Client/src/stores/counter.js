@@ -4,8 +4,8 @@ import axios from "axios";
 
 export const useCounterStore = defineStore("counter", {
   state: () => ({
-    // url: "https://pilm-zzz.up.railway.app",
-    url: "http://localhost:3000",
+    url: "https://pilm-zzz.up.railway.app",
+    // url: "http://localhost:3000",
     countries: [],
     statistic: {},
     isLogin: false,
@@ -93,29 +93,39 @@ export const useCounterStore = defineStore("counter", {
       this.isLogin = false;
     },
     paymentHandler() {
-      axios({ url: this.url + "/payments", method: "GET" })
+      let changeStatus = () => {
+        axios({
+          url: this.url + "/payments",
+          method: "PATCH",
+          headers: { access_token: localStorage.access_token },
+        })
+          .then((msg) => {
+            let { data } = msg;
+            console.log(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      };
+
+      axios({
+        url: this.url + "/payments",
+        method: "GET",
+        headers: { access_token: localStorage.access_token },
+      })
         .then((msg) => {
           let { data } = msg;
-          console.log(data.data.token);
-          snap.pay(data.data.token, {
-            onSuccess: function (result) {
-              console.log("success");
-              console.log(result);
-            },
-            onPending: function (result) {
-              console.log("pending");
-              console.log(result);
-            },
-            onError: function (result) {
-              console.log("error");
-              console.log(result);
-            },
-            onClose: function () {
-              console.log(
-                "customer closed the popup without finishing the payment"
-              );
-            },
-          });
+          snap
+            .pay(data.data.token, {
+              onSuccess: function (result) {
+                return changeStatus();
+              },
+            })
+            .then((msg) => {
+              let { data } = msg;
+              console.log(msg);
+              console.log(data);
+            });
         })
         .catch((err) => {
           console.log(err);
