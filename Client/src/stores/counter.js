@@ -6,38 +6,33 @@ export const useCounterStore = defineStore("counter", {
   state: () => ({
     // url: "https://pilm-zzz.up.railway.app",
     url: "http://localhost:3000",
-    movies: [],
-    random: {},
-    selected: {},
+    countries: [],
+    statistic: {},
   }),
   actions: {
-    getMovie() {
-      axios({
-        url: this.url + "/movies",
-        method: "GET",
-      })
+    getCountries() {
+      axios({ url: this.url + "/corona/countries", method: "GET" })
         .then((msg) => {
           let { data } = msg;
-          let random = "top" + Math.floor(Math.random() * 10) + 1;
-          data.forEach((el) => {
-            if (el.id === random) {
-              this.random = el;
-            }
-          });
-          this.movies = data;
+          this.countries = data.response;
         })
         .catch((err) => {
           console.log(err);
-        })
-        .finally();
+        });
     },
-    getDetail(id) {
+    getStatisticCountry(name) {
       axios({
-        url: this.url + "/movies/" + id,
+        url: this.url + "/corona/statistics",
         method: "GET",
+        params: { name: name },
       })
         .then((msg) => {
-          console.log(msg);
+          let { data } = msg;
+          this.statistic = data.response[0];
+          this.router.push({
+            name: "detail",
+            params: { name: name },
+          });
         })
         .catch((err) => {
           console.log(err);
