@@ -28,23 +28,34 @@ export default {
         <div class="text-center w-[43rem]">
           <div>
             <p class="text-[42px] font-bold">
-              Update Your Information About Covid-19 Today
+              Update Infomasimu Tentang Covid-19 Hari Ini
             </p>
           </div>
-          <div>
-            <router-link to="/top100">
-              <button
-                class="text-[29px] bg-[#006E7F] rounded-lg text-white w-[300px] h-[46px] hover:brightness-150"
-              >
-                Check now
-              </button>
-            </router-link>
+          <div class="flex flex-row justify-center gap-4">
+            <div>
+              <router-link to="/list">
+                <button
+                  class="text-[20px] bg-[#006E7F] rounded-lg text-white w-[300px] h-[46px] hover:brightness-150"
+                >
+                  Daftar Negara
+                </button>
+              </router-link>
+            </div>
+            <div>
+              <router-link to="/hospital">
+                <button
+                  class="text-[20px] bg-[#006E7F] rounded-lg text-white w-[300px] h-[46px] hover:brightness-150"
+                >
+                  Cek Rumah Sakit Rujukan
+                </button>
+              </router-link>
+            </div>
           </div>
         </div>
         <div class="">
           <img
             class="w-[15rem]"
-            src="../assets/—Pngtree—red covid-19 bacteria isolated on_5340587.png"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/SARS-CoV-2_without_background.png/1020px-SARS-CoV-2_without_background.png"
             alt=""
           />
         </div>

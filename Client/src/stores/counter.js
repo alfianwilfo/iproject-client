@@ -38,5 +38,18 @@ export const useCounterStore = defineStore("counter", {
           console.log(err);
         });
     },
+    getHospital() {
+      axios({
+        url: "https://dekontaminasi.com/api/id/covid19/hospitals",
+        method: "GET",
+      })
+        .then((msg) => {
+          // let { data } = msg;
+          console.log(msg);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 });
