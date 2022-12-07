@@ -51,5 +51,21 @@ export const useCounterStore = defineStore("counter", {
           console.log(err);
         });
     },
+    registerHandler(obj) {
+      let { email, username, password } = obj;
+      console.log(email, username, password);
+      axios({
+        url: this.url + "/users/register",
+        method: "POST",
+        data: { email: email, username: username, password: password },
+      })
+        .then((msg) => {
+          let { data } = msg;
+          this.router.push({ name: "login" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
   },
 });
