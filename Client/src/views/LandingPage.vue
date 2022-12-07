@@ -10,13 +10,10 @@ export default {
     Footer,
   },
   created() {
-    this.getMovie();
+    this.getCountries();
   },
   methods: {
-    ...mapActions(useCounterStore, ["getMovie"]),
-  },
-  computed: {
-    ...mapState(useCounterStore, ["random"]),
+    ...mapActions(useCounterStore, ["getCountries"]),
   },
 };
 </script>
