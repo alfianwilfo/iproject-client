@@ -8,6 +8,7 @@ export const useCounterStore = defineStore("counter", {
     url: "http://localhost:3000",
     countries: [],
     statistic: {},
+    isLogin: false,
   }),
   actions: {
     getCountries() {
@@ -66,6 +67,30 @@ export const useCounterStore = defineStore("counter", {
         .catch((err) => {
           console.log(err);
         });
+    },
+    loginHandler(obj) {
+      let { email, password } = obj;
+      axios({
+        url: this.url + "/users/login",
+        method: "POST",
+        data: {
+          email: email,
+          password: password,
+        },
+      })
+        .then((msg) => {
+          let { data } = msg;
+          this.isLogin = true;
+          localStorage.access_token = data.access_token;
+          this.router.push({ name: "landing-page" });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    logoutHandler() {
+      localStorage.clear();
+      this.isLogin = false;
     },
   },
 });

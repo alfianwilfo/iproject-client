@@ -1,6 +1,18 @@
 <script>
+import { mapActions, mapState } from "pinia";
+import { useCounterStore } from "../stores/counter";
+
 export default {
   name: "Navbar",
+  methods: {
+    ...mapActions(useCounterStore, ["logoutHandler"]),
+    forLogout() {
+      this.logoutHandler();
+    },
+  },
+  computed: {
+    ...mapState(useCounterStore, ["isLogin"]),
+  },
 };
 </script>
 
@@ -12,6 +24,8 @@ export default {
 
     <div class="flex items-center justify-center w-[10rem]">
       <button
+        v-if="isLogin"
+        @click="forLogout"
         class="w-[5rem] h-[3rem] hover:bg-[#D6E4E5] hover:text-black rounded text-[#EFF5F5]"
       >
         Logout
