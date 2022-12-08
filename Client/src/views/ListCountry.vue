@@ -25,7 +25,9 @@ export default {
 
 <template>
   <NavBar />
-  <Search />
+  <div class="w-[340px]">
+    <Search />
+  </div>
   <div class="container my-[3rem] grid grid-cols-7 gap-3">
     <Card v-for="country in countries" :country="country" :key="country" />
   </div>
