@@ -4,15 +4,25 @@ import axios from "axios";
 
 export const useCounterStore = defineStore("counter", {
   state: () => ({
-    url: "https://pilm-zzz.up.railway.app",
-    // url: "http://localhost:3000",
+    // url: "https://pilm-zzz.up.railway.app",
+    url: "http://localhost:3000",
     countries: [],
     statistic: {},
     isLogin: false,
+    firstHistory: {},
+    secondHistory: {},
+    thirdHistory: {},
+    isPre: false,
+    isVip: false,
   }),
   actions: {
-    getCountries() {
-      axios({ url: this.url + "/corona/countries", method: "GET" })
+    getCountries(name) {
+      console.log("MASUKK");
+      axios({
+        url: this.url + "/corona/countries",
+        params: { name: name },
+        method: "GET",
+      })
         .then((msg) => {
           let { data } = msg;
           this.countries = data.response;
@@ -39,22 +49,9 @@ export const useCounterStore = defineStore("counter", {
           Swal.fire("Error", err.response.data.message, "error");
         });
     },
-    getHospital() {
-      axios({
-        url: "https://dekontaminasi.com/api/id/covid19/hospitals",
-        method: "GET",
-      })
-        .then((msg) => {
-          // let { data } = msg;
-          console.log(msg);
-        })
-        .catch((err) => {
-          Swal.fire("Error", err.response.data.message, "error");
-        });
-    },
+
     registerHandler(obj) {
       let { email, username, password } = obj;
-      console.log(email, username, password);
       axios({
         url: this.url + "/users/register",
         method: "POST",
@@ -82,6 +79,12 @@ export const useCounterStore = defineStore("counter", {
           let { data } = msg;
           this.isLogin = true;
           localStorage.access_token = data.access_token;
+          localStorage.status = data.status;
+          if (data.status === "Basic") {
+            this.isVip = false;
+          } else {
+            this.isVip = true;
+          }
           this.router.push({ name: "landing-page" });
         })
         .catch((err) => {
@@ -101,7 +104,9 @@ export const useCounterStore = defineStore("counter", {
         })
           .then((msg) => {
             let { data } = msg;
-            console.log(data);
+            Swal.fire("Congrats", data.message, "success");
+            this.isVip = true;
+            localStorage.status = "Premium";
           })
           .catch((err) => {
             console.log(err);
@@ -121,15 +126,41 @@ export const useCounterStore = defineStore("counter", {
                 return changeStatus();
               },
             })
-            .then((msg) => {
-              let { data } = msg;
-              console.log(msg);
-              console.log(data);
-            });
+            .then((msg) => {});
+        })
+        .catch((err) => {
+          Swal.fire("Error", err.response.data.message, "error");
+        });
+    },
+    getHistory(name) {
+      this.isPre = true;
+      axios({
+        url: this.url + "/corona/history",
+        method: "GET",
+        params: { country: name },
+      })
+        .then((msg) => {
+          let { data } = msg;
+          this.firstHistory = data.response[0];
+          this.secondHistory = data.response[1];
+          this.thirdHistory = data.response[2];
         })
         .catch((err) => {
           console.log(err);
-        });
+        })
+        .finally(() => {});
+    },
+    checkLogin() {
+      if (!localStorage.access_token) {
+        this.isLogin = false;
+      } else {
+        if (localStorage.status === "Basic") {
+          this.isVip = false;
+        } else {
+          this.isVip = true;
+        }
+        this.isLogin = true;
+      }
     },
   },
 });

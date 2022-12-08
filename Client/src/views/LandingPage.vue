@@ -41,15 +41,6 @@ export default {
                 </button>
               </router-link>
             </div>
-            <div>
-              <router-link to="/hospital">
-                <button
-                  class="text-[20px] bg-[#006E7F] rounded-lg text-white w-[300px] h-[46px] hover:brightness-150"
-                >
-                  Cek Rumah Sakit Rujukan
-                </button>
-              </router-link>
-            </div>
           </div>
         </div>
         <div class="">

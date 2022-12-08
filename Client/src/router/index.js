@@ -2,7 +2,6 @@ import { createRouter, createWebHistory } from "vue-router";
 import LandingPage from "../views/LandingPage.vue";
 import Home from "../views/ListCountry.vue";
 import Detail from "../views/Detail.vue";
-import Hospital from "../views/Hospital.vue";
 import Login from "../views/Login.vue";
 import Register from "../views/Register.vue";
 
@@ -24,11 +23,7 @@ const router = createRouter({
       name: "detail",
       component: Detail,
     },
-    {
-      path: "/hospital",
-      name: "hospital",
-      component: Hospital,
-    },
+
     {
       path: "/login",
       name: "login",

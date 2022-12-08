@@ -1,25 +1,30 @@
 <script>
-import { mapState } from "pinia";
+import { mapActions, mapState } from "pinia";
 import NavBar from "../components/NavBar.vue";
 import { useCounterStore } from "../stores/counter";
+import Chart from "../components/Chart.vue";
 export default {
   name: "detail",
-  components: { NavBar },
+  components: { NavBar, Chart },
   computed: {
-    ...mapState(useCounterStore, ["statistic"]),
+    ...mapState(useCounterStore, ["statistic", "isLogin"]),
     calculate() {
       return this.statistic.deaths.new === null
         ? 0
         : "+" + Number(this.statistic.deaths.new).toLocaleString();
     },
   },
-  methods: {},
+  methods: {
+    ...mapActions(useCounterStore, ["getStatisticCountry"]),
+  },
+  created() {
+    this.getStatisticCountry(this.$route.params.name);
+  },
 };
 </script>
 
 <template>
   <NavBar />
-
   <div class="flex justify-center items-center flex-col">
     <div>
       <p class="font-bold text-3xl antialiased">{{ statistic.country }}</p>
@@ -65,6 +70,11 @@ export default {
           <p>Total : {{ Number(statistic.tests.total).toLocaleString() }}</p>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="w-screen flex justify-center items-baseline">
+    <div class="w-[550px]" v-if="isLogin">
+      <Chart />
     </div>
   </div>
 </template>
