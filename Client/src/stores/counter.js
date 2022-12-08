@@ -16,8 +16,13 @@ export const useCounterStore = defineStore("counter", {
     isVip: false,
   }),
   actions: {
-    getCountries() {
-      axios({ url: this.url + "/corona/countries", method: "GET" })
+    getCountries(name) {
+      console.log("MASUKK");
+      axios({
+        url: this.url + "/corona/countries",
+        params: { name: name },
+        method: "GET",
+      })
         .then((msg) => {
           let { data } = msg;
           this.countries = data.response;
