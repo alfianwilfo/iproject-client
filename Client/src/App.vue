@@ -16,6 +16,6 @@ export default {
 </script>
 
 <template>
-  <Preloader v-if="isPreload" />
+  <!-- <Preloader v-if="isPre" /> -->
   <RouterView />
 </template>

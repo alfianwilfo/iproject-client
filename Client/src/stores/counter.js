@@ -17,7 +17,7 @@ export const useCounterStore = defineStore("counter", {
   }),
   actions: {
     getCountries(name) {
-      console.log("MASUKK");
+      this.isPre = true;
       axios({
         url: this.url + "/corona/countries",
         params: { name: name },
@@ -29,6 +29,9 @@ export const useCounterStore = defineStore("counter", {
         })
         .catch((err) => {
           Swal.fire("Error", err.response.data.message, "error");
+        })
+        .finally(() => {
+          this.isPre = false;
         });
     },
     getStatisticCountry(name) {
@@ -133,7 +136,6 @@ export const useCounterStore = defineStore("counter", {
         });
     },
     getHistory(name) {
-      this.isPre = true;
       axios({
         url: this.url + "/corona/history",
         method: "GET",
@@ -147,8 +149,7 @@ export const useCounterStore = defineStore("counter", {
         })
         .catch((err) => {
           console.log(err);
-        })
-        .finally(() => {});
+        });
     },
     checkLogin() {
       if (!localStorage.access_token) {

@@ -45,24 +45,27 @@ export default {
     };
   },
   created() {
+    console.log(this.chartData);
     this.getHistory(this.$route.params.name);
-    this.chartData.labels.push(
+    console.log(this.firstHistory);
+    this.chartData?.labels.push(
       new Date(this.firstHistory.time).toString().substring(0, 24)
     );
-    this.chartData.datasets[0].data.push(this.firstHistory?.cases?.active);
-    this.chartData.datasets[1].data.push(this.firstHistory?.deaths?.total);
-
-    this.chartData.labels.push(
+    console.log(this.firstHistory);
+    this.chartData?.datasets[0].data.push(this.firstHistory?.cases?.active);
+    this.chartData?.datasets[1].data.push(this.firstHistory?.deaths?.total);
+    console.log("---");
+    this.chartData?.labels.push(
       new Date(this.secondHistory.time).toString().substring(0, 24)
     );
-    this.chartData.datasets[0].data.push(this.secondHistory?.cases?.active);
-    this.chartData.datasets[1].data.push(this.secondHistory?.deaths?.total);
-
-    this.chartData.labels.push(
+    this.chartData?.datasets[0].data.push(this.secondHistory?.cases?.active);
+    this.chartData?.datasets[1].data.push(this.secondHistory?.deaths?.total);
+    this.chartData?.labels.push(
       new Date(this.thirdHistory.time).toString().substring(0, 24)
     );
-    this.chartData.datasets[0].data.push(this.thirdHistory?.cases?.active);
-    this.chartData.datasets[1].data.push(this.thirdHistory?.deaths?.total);
+    this.chartData?.datasets[0].data.push(this.thirdHistory?.cases?.active);
+    this.chartData?.datasets[1].data.push(this.thirdHistory?.deaths?.total);
+    console.log(this.chartData);
   },
   methods: {
     ...mapActions(useCounterStore, ["getHistory"]),
